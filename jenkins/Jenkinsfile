@@ -2,12 +2,13 @@ pipeline {
 	agent {
 		docker {
 			image 'maven:3'	
+			args '-v /root/.m2:/root/.m2'
 		}
 	}
 	stages {
 		stage('First stage') {
 			steps {
-				sh 'mvn --version'
+				sh 'mvn -B -DskipTests clean package'
 			}
 		}
 	}
