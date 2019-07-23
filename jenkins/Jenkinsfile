@@ -6,10 +6,19 @@ pipeline {
 		}
 	}
 	stages {
-		stage('First stage') {
+		stage('Build') {
 			steps {
 				sh 'mvn -B -DskipTests clean package'
 			}
 		}
+	}
+	agent 'master'
+	stages {
+		stage('Create docker image') {
+			steps {
+				dir('docker')
+				sh 'docker build .'
+			}
+		}	 
 	}
 }
