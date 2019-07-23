@@ -11,14 +11,11 @@ pipeline {
 				sh 'mvn -B -DskipTests clean package'
 			}
 		}
-	}
-	agent any
-	stages {
 		stage('Create docker image') {
 			steps {
 				dir('docker')
 				sh 'docker build .'
-			}
-		}	 
+			}	 
+		}
 	}
 }
