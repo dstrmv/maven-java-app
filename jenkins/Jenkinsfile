@@ -17,9 +17,12 @@ pipeline {
 		stage('Create docker image') {
 			agent any
 			steps {
-				if (true) {
-					echo 'HEYYY!!!!!'
+				script {
+					if (true) {
+						println 'HEYYY!!!!!'
+					}
 				}
+				
 			//	sh 'mkdir target'
 			//	dir './target'
 			//	unstash 'calc-1.0-SNAPSHOT.jar'
