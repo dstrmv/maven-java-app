@@ -10,8 +10,10 @@ pipeline {
 			}
 			steps {
 				sh 'mvn -B -DskipTests clean package'
-			//	dir './target'
-			//	stash 'calc-1.0-SNAPSHOT.jar'
+				dir './target'
+				stash 'calc-1.0-SNAPSHOT.jar'
+				dir './..'
+				pwd
 			}
 		}
 		stage('Create docker image') {
