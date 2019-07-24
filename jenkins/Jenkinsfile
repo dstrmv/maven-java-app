@@ -2,12 +2,7 @@ pipeline {
 	agent none
 	stages {
 		stage('Build') {
-			agent {
-				docker {
-					image 'maven:3'	
-					args '-v $HOME/.m2:/root/.m2'
-				}
-			}
+			agent {	label 'maven' }
 			steps {
 				sh 'mvn -B -DskipTests clean package'	
 				script {			
@@ -16,7 +11,7 @@ pipeline {
 			}
 		}
 		stage('Create docker image') {
-			agent any
+			agent { label 'docker'}
 			steps {
 				script {
 					unstash 'target'
