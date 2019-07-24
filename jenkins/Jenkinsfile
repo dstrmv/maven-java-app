@@ -10,17 +10,20 @@ pipeline {
 			}
 			steps {
 				sh 'mvn -B -DskipTests clean package'
-				dir './target'
-				stash 'calc-1.0-SNAPSHOT.jar'
+			//	dir './target'
+			//	stash 'calc-1.0-SNAPSHOT.jar'
 			}
 		}
 		stage('Create docker image') {
 			agent any
 			steps {
-				sh 'mkdir target'
-				dir './target'
-				unstash 'calc-1.0-SNAPSHOT.jar'
-				dir './..'
+				if (true) {
+					echo 'HEYYY!!!!!'
+				}
+			//	sh 'mkdir target'
+			//	dir './target'
+			//	unstash 'calc-1.0-SNAPSHOT.jar'
+			//	dir './..'
 				sh 'docker build .'
 			}	 
 		}
